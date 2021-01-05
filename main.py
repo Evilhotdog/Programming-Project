@@ -32,7 +32,7 @@ class Player:
         return 0
 def endgame(loser):
     if losingPlayer:
-        # if a losing player has been established by one's score hitting zero, it does not need to compare scores
+        # If a losing player has been established by one's score hitting zero, it does not need to compare scores
         if losingPlayer == p1:
             print("p1 lost")
             return p2
@@ -40,7 +40,7 @@ def endgame(loser):
             print("p2 lost")
             return p1
     else:
-        # otherwise, their scores should be compared
+        # Otherwise, their scores should be compared
         if p1.score > p2.score:
             print("p1 won")
             return p1
@@ -49,10 +49,10 @@ def endgame(loser):
             return p2
         elif p1.score == p2.score:
             print ("equal")
-            # if the scores are equal, then the winning player is dictated by extra times so that should be returned
+            # If the scores are equal, then the winning player is dictated by extra times so that should be returned
             return(extratime())
 def extratime():
-    while True: # continues to play rounds of extra time until a winner is established
+    while True: # Continues to play rounds of extra time until a winner is established
         roll1 = random.randint(1,6)
         roll2 = random.randint(1,6)
         print("Player 1 rolled "+roll1+". Player 2 rolled "+roll2)
@@ -61,7 +61,7 @@ def extratime():
         elif roll2 > roll1:
             return p2
 def checkPassword(passwordinput):
-    # the username and password lists are set up so corresponding usernames and passwords have the same index. this checks if the password with the same index as the given username matches the password given
+    # The username and password lists are set up so corresponding usernames and passwords have the same index. this checks if the password with the same index as the given username matches the password given
     if passwords[usernameIndex-1] == passwordinput:
         return True
     else:
@@ -73,14 +73,14 @@ def findUsername(usernameInput):
             print("The index is "+str(i))
             return i+1
 def saveToFile(winner):
-    with open("leaderboard.csv","r") as leaderboard: # open leaderboard to turn into list
+    with open("leaderboard.csv","r") as leaderboard: # Open leaderboard to turn into list
         leaderboardList = list(csv.reader(leaderboard))
     print (leaderboardList)
     leaderboardList.append([winner.name, str(winner.score)])
     leaderboardList = insertionsort(leaderboardList)
     leaderboardList.reverse()
     while len(leaderboardList) > 5:
-        leaderboardList.pop() # removees lowest scores until 5 remain. this is a leaderboard, after all
+        leaderboardList.pop() # Removees lowest scores until 5 remain. this is a leaderboard, after all
     print(leaderboardList)
     with open("leaderboard.csv","w") as leaderboard:
         seperator = ","
@@ -137,11 +137,11 @@ for i in range(2):
         p2 = Player(usernameInput)
 losingPlayer = 0
 for i in range(5):
-    # reset scores to mark new game
+    # Reset scores to mark new game
     p1.score = 0
     p2.score = 0
     for j in range(1,6):
-        cont = p1.round() # return value of round method is a losing player, or 0 to mark no players having reached a score of 0
+        cont = p1.round() # Return value of round method is a losing player, or 0 to mark no players having reached a score of 0
         if cont != 0:
             losingPlayer = cont
             break
